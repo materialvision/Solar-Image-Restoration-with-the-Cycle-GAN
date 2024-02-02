@@ -105,8 +105,8 @@ if(opt.cuda):
 def test():
 
     for i in range(0,opt.imgNum,opt.batchSize):
-        imgA = loaderA.next() 
-        imgB = loaderB.next()
+        imgA = next(loaderA) 
+        imgB = next(loaderB)
         real_A.data.copy_(imgA)
         real_B.data.copy_(imgB)
         print(i)

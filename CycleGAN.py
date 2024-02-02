@@ -173,8 +173,8 @@ fake_label = 0
 ###########   Testing    ###########
 def test(niter):
     loaderA, loaderB = iter(loader_A), iter(loader_B)
-    imgA = loaderA.next()
-    imgB = loaderB.next()
+    imgA = next(loaderA)
+    imgB = next(loaderB)
     real_A.data.resize_(imgA.size()).copy_(imgA)
     real_B.data.resize_(imgB.size()).copy_(imgB)
     AB = G_AB(real_A)
@@ -202,12 +202,12 @@ s = time.time()
 for iteration in range(1,opt.niter+1):
     ###########   data  ###########
     try:
-        imgA = loaderA.next()
-        imgB = loaderB.next()
+        imgA = next(loaderA)
+        imgB = next(loaderB)
     except StopIteration:
         loaderA, loaderB = iter(loader_A), iter(loader_B)
-        imgA = loaderA.next()
-        imgB = loaderB.next()
+        imgA = next(loaderA)
+        imgB = next(loaderB)
 
     real_A.data.resize_(imgA.size()).copy_(imgA)
     real_B.data.resize_(imgB.size()).copy_(imgB)
